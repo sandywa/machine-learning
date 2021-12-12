@@ -132,8 +132,10 @@ function ImportGambar_Callback(hObject, eventdata, handles)
         meanG1=meanG/count;
         meanB1=meanB/count;
     end
-    avgrgbImage=[meanR1,meanG1,meanB1]; %prints the rgb average value
+    
     global avgrgbImage;
+    avgrgbImage=[meanR1,meanG1,meanB1]; %prints the rgb average value
+    
     %set RGB text gui
     set(handles.red,'String',meanR1)
     set(handles.green,'String',meanG1)
@@ -151,7 +153,7 @@ global avgrgbImage;
 sample = avgrgbImage;
 
 opts = detectImportOptions(handles.dataSet);
-opts.SelectedVariableNames = (4:6);
+opts.SelectedVariableNames = (2:4);
 training = readmatrix(handles.dataSet, opts);
 
 opts = detectImportOptions(handles.dataSet);
@@ -160,8 +162,16 @@ group = readmatrix(handles.dataSet, opts);
 
 class = fitcknn(training, group,'NumNeighbors', 5);
 klasifikasi = predict(class, sample);
-
-set(handles.text3,'String',klasifikasi);
+if(klasifikasi==1)
+   hasil="Apple";
+end
+if(klasifikasi==2)
+   hasil="Banana";
+end
+if(klasifikasi==3)
+   hasil="Orange";
+end
+set(handles.text3,'String',hasil);
 
 disp('Hasil klasifikasi :  ')
 disp(klasifikasi)
@@ -205,9 +215,9 @@ function Mentah_Callback(hObject, eventdata, handles)
 
           % create matrix sample
           if (aa  == 1)
-            sample1 = ['mentah'];
+            sample1 = [1];
           else 
-            sample1 = [sample1;'mentah'];
+            sample1 = [sample1;1];
           end
 
           % create matrix rgb data1
@@ -217,6 +227,10 @@ function Mentah_Callback(hObject, eventdata, handles)
                 matrix = [ matrix ; avgrgb{aa}];
           end
     end
+    global finalSample;
+    finalSample = sample1 ;
+    global finalMatrix;
+    finalMatrix = matrix ;
     set(handles.staticMentah,'String','Teruploud');
   
 
@@ -259,9 +273,9 @@ function Matang_Callback(hObject, eventdata, handles)
 
           % create matrix sample2
           if (bb  == 1)
-            sample2 = ['matang'];
+            sample2 = [2];
           else 
-            sample2 = [sample2;'matang'];
+            sample2 = [sample2;2];
           end
 
           % create matrix data2
@@ -271,6 +285,10 @@ function Matang_Callback(hObject, eventdata, handles)
                 matrix2 = [ matrix2 ; avgrgb2{bb}];
           end
     end
+    global finalSample2;
+    finalSample2 = sample2 ;
+    global finalMatrix2;
+    finalMatrix2 = matrix2 ;
     set(handles.staticMatang,'String', 'Teruploud');
   
 
@@ -313,9 +331,9 @@ function SangatMatang_Callback(hObject, eventdata, handles)
 
           % create matrix sample2
           if (bb  == 1)
-            sample3 = ['Sangat Matang'];
+            sample3 = [3];
           else 
-            sample3 = [sample3;'Sangat Matang'];
+            sample3 = [sample3;3];
           end
 
           % create matrix data2
@@ -326,10 +344,12 @@ function SangatMatang_Callback(hObject, eventdata, handles)
           end
     end
     
-    
+    global finalSample3;
+    finalSample3 = sample3 ;
     global finalMatrix3;
-    finalMatrix3 = cell(sample3, matrix3);
+    finalMatrix3 = matrix3 ;
     set(handles.staticSgtMatang,'String','Teruploud');
+    disp(finalSample3);
   
 
 
@@ -338,11 +358,16 @@ function Processing_Callback(hObject, eventdata, handles)
 % hObject    handle to Processing (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-%create matrix sample data 1
-%processing mentah dataset
+    global finalSample;
+    global finalMatrix;
+    global finalSample2;
+    global finalMatrix2;
+    global finalSample3;
+    global finalMatrix3;
+    final = [finalSample finalMatrix;finalSample2 finalMatrix2;finalSample3 finalMatrix3];
+writematrix(final,'a.csv','Delimiter','tab');
+set(handles.proses,'String','Data Training Berhasil Dibuat');
 
-global finalMatrix3;
-disp(finalMatrix3);
 
 
 
