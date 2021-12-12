@@ -1,7 +1,7 @@
 
 %create matrix sample data 1
-folder = 'E:\Downloads\Compressed\AppleScabFDs\Healthy'; 
-I=dir(fullfile(folder,'*.jpg'));
+folder = uigetdir();
+I=dir(fullfile(folder,'*.png'));
 for a=1:numel(I)
   filename=fullfile(folder,I(a).name);
   name{a} = filename;
@@ -43,8 +43,8 @@ for aa=1:numel(I)
 end
 
 %create matrix sample data 2
-folder = 'E:\Downloads\Compressed\AppleScabFDs\Scab'; 
-J=dir(fullfile(folder,'*.jpg'));
+folder = uigetdir();
+J=dir(fullfile(folder,'*.png'));
 for b=1:numel(J)
   filename2=fullfile(folder,J(b).name);
   name2{b} = filename2;
@@ -86,7 +86,13 @@ for bb=1:numel(J)
 end
 
 %Membuat matrik input
-img3="E:\Downloads\Compressed\AppleScabFDs\test.jpg";
+img3=uigetfile(...
+    {'.bmp;*.png;*.jpeg;*.jpg', 'File citra(.bmp,*.png,*.jpeg,*.jpg)';
+    '.bmp', 'File Bitmap(.bmp)';...
+    '.png', 'File Png(.png)';...
+    '.jpg', 'File Jpeg(.jpg)';
+    '.', 'Semua File (.)'},...
+    'Buka Citra asli');
 
     sz3=imread(img3); %read the image
     pict3=double(sz3);% convert it to double for calculations

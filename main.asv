@@ -88,10 +88,6 @@ function ImportCSV_Callback(hObject, eventdata, handles)
 % hObject    handle to ImportCSV (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-[File, Path] = uigetfile('*.csv');
-handles.dataSet = [Path File];
-set(handles.csvStatic,'String',handles.dataSet)
-guidata(hObject,handles)
 
 
 % --- Executes on button press in ImportGambar.
@@ -106,39 +102,10 @@ function ImportGambar_Callback(hObject, eventdata, handles)
     '.jpg', 'File Jpeg(.jpg)';
     '.', 'Semua File (.)'},...
     'Buka Citra asli');
- %set image into axes
  handles.myImage = strcat(pathname, filename);
  axes(handles.imageAxes);
  imshow(handles.myImage);
- %set histogram
- imageImport = imread(handles.myImage);
- axes(handles.axes3);
- imhist(imageImport);
  set(handles.pathFile,'String',handles.myImage);
- %image RGB process
- img=handles.myImage;
-    sz=imread(img); %read the image
-    pict=double(sz);% convert it to double for calculations
-    dim=size(pict); %determine the dimension of the pict
-    count=0;meanR=0;meanG=0;meanB=0;%preallocations
-    for i=1:dim(1)
-        for j=1:dim(2)
-            meanR=meanR+pict(i,j,1);
-            meanG=meanG+pict(i,j,2);
-            meanB=meanB+pict(i,j,3);
-            count=count+1;
-        end
-        meanR1=meanR/count;
-        meanG1=meanG/count;
-        meanB1=meanB/count;
-    end
-    avgrgbImage=[meanR1,meanG1,meanB1]; %prints the rgb average value
-    global avgrgbImage;
-    %set RGB text gui
-    set(handles.red,'String',meanR1)
-    set(handles.green,'String',meanG1)
-    set(handles.blue,'String',meanB1)
-    disp(avgrgbImage);
 
 
 
@@ -147,24 +114,6 @@ function Klasifikasi_Callback(hObject, eventdata, handles)
 % hObject    handle to Klasifikasi (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-global avgrgbImage;
-sample = avgrgbImage;
-
-opts = detectImportOptions(handles.dataSet);
-opts.SelectedVariableNames = (4:6);
-training = readmatrix(handles.dataSet, opts);
-
-opts = detectImportOptions(handles.dataSet);
-opts.SelectedVariableNames = (1);
-group = readmatrix(handles.dataSet, opts);
-
-class = fitcknn(training, group,'NumNeighbors', 5);
-klasifikasi = predict(class, sample);
-
-set(handles.text3,'String',klasifikasi);
-
-disp('Hasil klasifikasi :  ')
-disp(klasifikasi)
 
 
 % --- Executes on button press in Mentah.
@@ -326,9 +275,10 @@ function SangatMatang_Callback(hObject, eventdata, handles)
           end
     end
     
-    
+    global finalSample3;
+    finalSample3 = sample3 ;
     global finalMatrix3;
-    finalMatrix3 = cell(sample3, matrix3);
+    finalMatrix3 = matrix3 ;
     set(handles.staticSgtMatang,'String','Teruploud');
   
 
@@ -340,11 +290,9 @@ function Processing_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 %create matrix sample data 1
 %processing mentah dataset
-
+global finalSample3;
 global finalMatrix3;
-disp(finalMatrix3);
-
-
+disp([finalSample3 finalMatrix3);
 
 
 
