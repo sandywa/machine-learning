@@ -22,7 +22,7 @@ function varargout = main(varargin)
 
 % Edit the above text to modify the response to help main
 
-% Last Modified by GUIDE v2.5 12-Dec-2021 09:09:37
+% Last Modified by GUIDE v2.5 12-Dec-2021 09:46:20
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -80,16 +80,16 @@ function pushbutton1_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 
 
-% --- Executes on button press in pushbutton2.
-function pushbutton2_Callback(hObject, eventdata, handles)
-% hObject    handle to pushbutton2 (see GCBO)
+% --- Executes on button press in ImportCSV.
+function ImportCSV_Callback(hObject, eventdata, handles)
+% hObject    handle to ImportCSV (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
 
-% --- Executes on button press in pushbutton3.
-function pushbutton3_Callback(hObject, eventdata, handles)
-% hObject    handle to pushbutton3 (see GCBO)
+% --- Executes on button press in ImportGambar.
+function ImportGambar_Callback(hObject, eventdata, handles)
+% hObject    handle to ImportGambar (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 [filename pathname] = uigetfile(...
@@ -101,41 +101,52 @@ function pushbutton3_Callback(hObject, eventdata, handles)
     'Buka Citra asli');
  handles.myImage = strcat(pathname, filename);
  axes(handles.imageAxes);
- imshow(handles.pathFile);
+ imshow(handles.myImage);
  set(handles.pathFile,'String',handles.myImage);
 
 
 
-% --- Executes on button press in pushbutton4.
-function pushbutton4_Callback(hObject, eventdata, handles)
-% hObject    handle to pushbutton4 (see GCBO)
+% --- Executes on button press in Klasifikasi.
+function Klasifikasi_Callback(hObject, eventdata, handles)
+% hObject    handle to Klasifikasi (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
 
-% --- Executes on button press in pushbutton5.
-function pushbutton5_Callback(hObject, eventdata, handles)
-% hObject    handle to pushbutton5 (see GCBO)
+% --- Executes on button press in Mentah.
+function Mentah_Callback(hObject, eventdata, handles)
+% hObject    handle to Mentah (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+  sourceFolder = uigetdir();
+  handles.sourceFolderMentah = sourceFolder;
+  set(handles.pathFile,'String',handles.sourceFolderMentah);
+ %guidata(hObject, handles);
+  
 
 
-% --- Executes on button press in pushbutton6.
-function pushbutton6_Callback(hObject, eventdata, handles)
-% hObject    handle to pushbutton6 (see GCBO)
+% --- Executes on button press in Matang.
+function Matang_Callback(hObject, eventdata, handles)
+% hObject    handle to Matang (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+  sourceFolder = uigetdir();
+  handles.sourceFolderMatang = sourceFolder;
+  set(handles.pathFile,'String',handles.sourceFolderMatang);
 
 
-% --- Executes on button press in pushbutton7.
-function pushbutton7_Callback(hObject, eventdata, handles)
-% hObject    handle to pushbutton7 (see GCBO)
+% --- Executes on button press in SangatMatang.
+function SangatMatang_Callback(hObject, eventdata, handles)
+% hObject    handle to SangatMatang (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+  sourceFolder = uigetdir();
+  handles.sourceFolderSgtMatang = sourceFolder;
+  set(handles.pathFile,'String',handles.sourceFolderSgtMatang);
 
 
-% --- Executes on button press in pushbutton8.
-function pushbutton8_Callback(hObject, eventdata, handles)
-% hObject    handle to pushbutton8 (see GCBO)
+% --- Executes on button press in Processing.
+function Processing_Callback(hObject, eventdata, handles)
+% hObject    handle to Processing (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
