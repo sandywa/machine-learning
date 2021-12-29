@@ -1,7 +1,8 @@
 import cv2
 import numpy
-from PIL import Image
 import glob
+from PIL import Image
+
 image_list = []
 for filename in glob.glob('C:/Users/acer/Pictures/background/*.jpg'): #assuming jpg
     myimg = cv2.imread(filename)
