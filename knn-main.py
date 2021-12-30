@@ -95,7 +95,7 @@ def main():
         k = int(input('Enter the value of k : '))
 
         # load the training and test data set
-        training_file = "data-citrus.csv"
+        training_file = "dataset.csv"
         # test_file = input('Enter name of test data file : ')
         training_set = convert_to_float(load_data_set(training_file), 'training')
         # test_set = convert_to_float(load_data_set(test_file), 'test')
