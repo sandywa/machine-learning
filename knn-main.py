@@ -1,3 +1,5 @@
+import cv2
+import numpy
 from csv import reader
 from sys import exit
 from math import sqrt
@@ -96,13 +98,16 @@ def main():
 
         # load the training and test data set
         training_file = "dataset.csv"
-        # test_file = input('Enter name of test data file : ')
         training_set = convert_to_float(load_data_set(training_file), 'training')
-        # test_set = convert_to_float(load_data_set(test_file), 'test')
 
-        # SINGLE INPUT DATA TESTING
-        test_set = [[5,3,2]]
+        # Image Target
+        filename = 'C:/Users/acer/Documents/MATLAB/Gambar Test/WhatsApp Image 2021-12-12 at 20.29.13.jpeg'
+        myimg = cv2.imread(filename)
+        avg_color_per_row = numpy.average(myimg, axis=0)
+        avg_color = numpy.average(avg_color_per_row, axis=0)
+        test_set = [avg_color]
 
+        # Files Check
         if not training_set:
             print('Empty training set')
 
