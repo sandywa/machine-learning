@@ -3,66 +3,67 @@ import numpy
 import glob
 import csv
 import numpy as np
-#from PIL import Image
 
-
+# ------------- Data Klasifikasi 1
 count = 1
-for filename in glob.glob('C:/Users/acer/Pictures/NGEGAMBAR/*.jpg'): #assuming jpg
+for filename in glob.glob('C:/Users/acer/Documents/MATLAB/dataset/original_data_set/freshapples/*.png'): #assuming jpg
     myimg = cv2.imread(filename)
     avg_color_per_row = numpy.average(myimg, axis=0)
     avg_color = numpy.average(avg_color_per_row, axis=0)
     # color format is BGR not RGB, cv2 membaca gambar dalam format BGR.
-    # print(avg_color)
     # save into 1 matrix
     if count == 1 :
         arr = np.array(avg_color)
-        arr = np.hstack([avg_color,['satu']])
+        arr = np.hstack([avg_color,['Apple']])
         count = 2
     else :
         row = np.array(avg_color)
-        row = np.hstack([row,['satu']])
+        row = np.hstack([row,['Apple']])
         arr = np.vstack([arr,row])
-print("Hasilnya 1 : ")
+print("Hasil Data 1 : ")
 print(arr)
 
+# ------------- Data Klasifikasi 2
+
 count = 1
-for filename in glob.glob('C:/Users/acer/Pictures/background/*.jpg'): #assuming jpg
+for filename in glob.glob('C:/Users/acer/Documents/MATLAB/dataset/original_data_set/freshbanana/*.png'): #assuming jpg
     myimg = cv2.imread(filename)
     avg_color_per_row = numpy.average(myimg, axis=0)
     avg_color = numpy.average(avg_color_per_row, axis=0)
     # color format is BGR not RGB, cv2 membaca gambar dalam format BGR.
-    # print(avg_color)
     # save into 1 matrix
     if count == 1 :
-        arr2 = np.hstack([avg_color,['dua']])
+        arr2 = np.hstack([avg_color,['Banana']])
         count = 2
     else :
         row = np.array(avg_color)
-        row = np.hstack([row,['dua']])
+        row = np.hstack([row,['Banana']])
         arr2 = np.vstack([arr2,row])
-print("Hasilnya 2 : ")
+print("Hasil Data 2 : ")
 print(arr2)
 
+
+# ------------- Data Klasifikasi 3
+
 count = 1
-for filename in glob.glob('C:/Users/acer/Pictures/BACKGROUND ZOOM/*.jpg'): #assuming jpg
+for filename in glob.glob('C:/Users/acer/Documents/MATLAB/dataset/original_data_set/freshoranges/*.png'): #assuming jpg
     myimg = cv2.imread(filename)
     avg_color_per_row = numpy.average(myimg, axis=0)
     avg_color = numpy.average(avg_color_per_row, axis=0)
     # color format is BGR not RGB, cv2 membaca gambar dalam format BGR.
-    # print(avg_color)
     # save into 1 matrix
     if count == 1 :
         arr3 = np.array(avg_color)
-        arr3 = np.hstack([avg_color,['tiga']])
+        arr3 = np.hstack([avg_color,['Orange']])
         count = 2
     else :
         row = np.array(avg_color)
-        row = np.hstack([row,['tiga']])
+        row = np.hstack([row,['Orange']])
         arr3 = np.vstack([arr3,row])
-print("Hasilnya 3 : ")
+print("Hasil Data 3 : ")
 print(arr3)
 
-# menggabungkan semua data
+# Menggabungkan semua data menjadi 1 matrix utuh
 dataset = np.vstack([arr,arr2])
 dataset  = np.vstack([dataset,arr3])
 print("Hasilnya Dataset : ")
