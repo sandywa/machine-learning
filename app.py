@@ -1,15 +1,18 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, send_from_directory
+import os
 
 app = Flask(__name__)
 
-@app.route('/')
+@app.route('/', methods=['GET' , 'POST'])
 def index():
-	return render_template('index.php')
+	if request.method == 'POST':
+		if request.files:
+			image = request.files['image']
+			img_path = os.path.join(app.config['UPLOUD_FOLDER'],image.filename)
+			image.save(img_path)
+			return render_template('index.html?hasil='+img_path)
 
-@app.route('/',methods=['POST'])
-def getvalue():
-	file = request.form['formFile']
-	return render_template('index.php',fileDir = file)
+	return render_template('index.html')
 
 if __name__ == '__main__':
 	app.run(debug=True)
