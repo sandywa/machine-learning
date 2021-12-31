@@ -101,6 +101,34 @@ def index():
             image = request.files['image']
             img_path = os.path.join(app.config['UPLOAD_FOLDER'],image.filename)
             image.save(img_path)
+            # get value of k
+            k = 5
+
+            # load the training and test data set
+            training_file = "data-training.csv"
+            training_set = convert_to_float(load_data_set(training_file), 'training')
+
+            # Image Target
+            filename = img_path
+            myimg = cv2.imread(filename)
+            avg_color_per_row = numpy.average(myimg, axis=0)
+            avg_color = numpy.average(avg_color_per_row, axis=0)
+            test_set = [avg_color]
+
+            # Files Check
+            if not training_set:
+                print('Empty training set')
+
+            elif not test_set:
+                print('Empty test set')
+
+            elif k > len(training_set):
+                print('Expected number of neighbors is higher than number of training data instances')
+
+            else:
+                #test_data = [4.3, 2.9, 1.7, 0.3]
+                knn(training_set, test_set, k)
+
             return render_template('index.html',fileDir=img_path)
 
     return render_template('index.html')
