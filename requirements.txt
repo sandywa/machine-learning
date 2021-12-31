@@ -1,7 +1,2 @@
 flask
 opencv-contrib-python-headless
-os
-numpy
-math
-operator
-sys
