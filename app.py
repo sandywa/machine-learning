@@ -9,7 +9,7 @@ from operator import itemgetter
 
 
 app = Flask(__name__)
-app.config['UPLOAD_FOLDER'] = './static/uploads/'
+app.config['UPLOAD_FOLDER'] = './static/'
 
 def load_data_set(filename):
     try:
@@ -132,7 +132,7 @@ def index():
                 #test_data = [4.3, 2.9, 1.7, 0.3]
                 hasil = knn(training_set, test_set, k)
 
-            return render_template('index.html',fileDir= hasil)
+            return render_template('index.html',fileDir=hasil,img_path = image.filename)
 
     return render_template('index.html')
 
