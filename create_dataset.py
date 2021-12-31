@@ -6,7 +6,7 @@ import numpy as np
 
 # ------------- Data Klasifikasi 1
 count = 1
-for filename in glob.glob('C:/Users/acer/Documents/MATLAB/dataset/original_data_set/freshapples/*.png'): #assuming jpg
+for filename in glob.glob('C:/Users/acer/Documents/MATLAB/dataset/original_data_set/Test/freshapples/*.png'): #assuming jpg
     myimg = cv2.imread(filename)
     avg_color_per_row = numpy.average(myimg, axis=0)
     avg_color = numpy.average(avg_color_per_row, axis=0)
@@ -26,7 +26,7 @@ print(arr)
 # ------------- Data Klasifikasi 2
 
 count = 1
-for filename in glob.glob('C:/Users/acer/Documents/MATLAB/dataset/original_data_set/freshbanana/*.png'): #assuming jpg
+for filename in glob.glob('C:/Users/acer/Documents/MATLAB/dataset/original_data_set/Test/freshbanana/*.png'): #assuming jpg
     myimg = cv2.imread(filename)
     avg_color_per_row = numpy.average(myimg, axis=0)
     avg_color = numpy.average(avg_color_per_row, axis=0)
@@ -46,7 +46,7 @@ print(arr2)
 # ------------- Data Klasifikasi 3
 
 count = 1
-for filename in glob.glob('C:/Users/acer/Documents/MATLAB/dataset/original_data_set/freshoranges/*.png'): #assuming jpg
+for filename in glob.glob('C:/Users/acer/Documents/MATLAB/dataset/original_data_set/Test/freshoranges/*.png'): #assuming jpg
     myimg = cv2.imread(filename)
     avg_color_per_row = numpy.average(myimg, axis=0)
     avg_color = numpy.average(avg_color_per_row, axis=0)
@@ -66,10 +66,13 @@ print(arr3)
 # Menggabungkan semua data menjadi 1 matrix utuh
 dataset = np.vstack([arr,arr2])
 dataset  = np.vstack([dataset,arr3])
-print("Hasilnya Dataset : ")
+print("Hasil Dataset : ")
 print(dataset)
 
 print("Save Dataset : ")
-with open('dataset.csv', 'w', newline='') as file:
+nameFile = str(input('Input nama file : '))
+nameFile = nameFile + '.csv'
+with open(nameFile, 'w', newline='') as file:
     mywriter = csv.writer(file, delimiter=',')
     mywriter.writerows(dataset)
+print("Dataset Tersimpan dengan nama : " + nameFile)
