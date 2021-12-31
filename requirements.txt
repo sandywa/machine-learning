@@ -1,5 +1,4 @@
 flask
-csv
 opencv-contrib-python-headless
 os
 numpy
