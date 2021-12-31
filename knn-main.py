@@ -101,7 +101,7 @@ def main():
         training_set = convert_to_float(load_data_set(training_file), 'training')
 
         # Image Target
-        filename = 'C:/Users/acer/Documents/MATLAB/Gambar Test/WhatsApp Image 2021-12-12 at 20.29.13.jpeg'
+        filename = './static/uploads/jeruk.jpeg'
         myimg = cv2.imread(filename)
         avg_color_per_row = numpy.average(myimg, axis=0)
         avg_color = numpy.average(avg_color_per_row, axis=0)
