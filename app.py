@@ -95,54 +95,15 @@ def knn(training_set, test_set, k):
         print(e)
 
 @app.route('/', methods=['GET' , 'POST'])
-def index():	
-	if request.method == 'POST':
-		if request.files:
-			#Get image form name 'image'
-			image = request.files['image']
+def index():
+    if request.method == 'POST':
+        if request.files:
+            image = request.files['image']
+            img_path = os.path.join(app.config['UPLOAD_FOLDER'],image.filename)
+            image.save(img_path)
+            return render_template('index.html',fileDir=img_path)
 
-			#Uploud to current dir
-			img_path = os.path.join(app.config['UPLOAD_FOLDER'],image.filename)
-			image.save(img_path)
-
-				try:
-			        # get value of k = 3
-			        k = 3
-
-			        # load the training and test data set
-			        training_file = "dataset.csv"
-			        training_set = convert_to_float(load_data_set(training_file), 'training')
-
-			        # Image Target
-			        filename = img_path
-			        myimg = cv2.imread(filename)
-			        avg_color_per_row = numpy.average(myimg, axis=0)
-			        avg_color = numpy.average(avg_color_per_row, axis=0)
-			        test_set = [avg_color]
-
-			        # Files Check
-			        if not training_set:
-			            return render_template('index.html',fileDir="Empty training set")
-
-			        elif not test_set:
-			            return render_template('index.html',fileDir="Empty test set")
-
-			        elif k > len(training_set):
-			            return render_template('index.html',fileDir="Expected number of neighbors is higher than number of training data instances")
-
-			        else:
-			            #test_data = [4.3, 2.9, 1.7, 0.3]
-			            knn(training_set, test_set, k)
-
-			    except ValueError as v:
-			        return render_template('index.html',fileDir=v)
-
-			    except FileNotFoundError:
-			        return render_template('index.html',fileDir="File not found")
-								
-			return render_template('index.html',fileDir="Berhasil Harusnya")
-
-	return render_template('index.html')
+    return render_template('index.html')
 
 if __name__ == '__main__':
-	app.run(debug=True)
+    app.run(debug=True)
