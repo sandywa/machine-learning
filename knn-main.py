@@ -97,7 +97,7 @@ def main():
         k = int(input('Enter the value of k : '))
 
         # load the training and test data set
-        training_file = "dataset.csv"
+        training_file = "data-training.csv"
         training_set = convert_to_float(load_data_set(training_file), 'training')
 
         # Image Target
