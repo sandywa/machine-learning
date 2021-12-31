@@ -134,7 +134,7 @@ def index():
 
             return render_template('index.html',fileDir=hasil,img_path = image.filename)
 
-    return render_template('index.html', fileDir='./static/default.jpeg')
+    return render_template('index.html', img_path='default.jpeg')
 
 if __name__ == '__main__':
     app.run(debug=True)
