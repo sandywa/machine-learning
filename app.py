@@ -7,6 +7,7 @@ from sys import exit
 from math import sqrt
 from operator import itemgetter
 
+
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = './static/uploads/'
 
@@ -84,6 +85,8 @@ def knn(training_set, test_set, k):
             # get the class with maximum votes
             index, value = find_response(neighbors, classes)
 
+            return classes[index]
+
             # Display prediction
             print('The predicted class for sample ' + str(test_instance) + ' is : ' + classes[index])
             print('Number of votes : ' + str(value) + ' out of ' + str(k))
@@ -127,9 +130,9 @@ def index():
 
             else:
                 #test_data = [4.3, 2.9, 1.7, 0.3]
-                knn(training_set, test_set, k)
+                hasil = knn(training_set, test_set, k)
 
-            return render_template('index.html',fileDir=img_path)
+            return render_template('index.html',fileDir= hasil)
 
     return render_template('index.html')
 
