@@ -1,0 +1,8 @@
+flask
+os
+cv2
+numpy
+csv
+sys
+math
+operator
