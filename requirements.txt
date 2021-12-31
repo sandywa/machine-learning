@@ -1,5 +1,8 @@
 flask
-gunicorn
-opencv-contrib-python-headless
-joblib
-scikit-learn
+os
+cv2
+numpy
+csv
+sys
+math
+operator
