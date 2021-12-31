@@ -1,8 +1,9 @@
-flask
 os
 cv2
 numpy
+flask
 csv
 sys
 math
 operator
+pkg-resources==0.0.0
