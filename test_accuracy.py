@@ -14,20 +14,11 @@ def load_data_set(filename):
         raise e
 
 
-def convert_to_float(data_set, mode):
+def convert_to_float(data_set):
     new_set = []
     try:
-        if mode == 'training':
-            for data in data_set:
-                new_set.append([float(x) for x in data[:len(data)-1]] + [data[len(data)-1]])
-
-        elif mode == 'test':
-            for data in data_set:
-                new_set.append([float(x) for x in data])
-
-        else:
-            print('Invalid mode, program will exit.')
-            exit()
+        for data in data_set:
+            new_set.append([float(x) for x in data[:len(data)-1]] + [data[len(data)-1]])
 
         return new_set
 
@@ -111,11 +102,11 @@ def main():
 
         # load the training 
         training_file = "data-training.csv"
-        training_set = convert_to_float(load_data_set(training_file), 'training')
+        training_set = convert_to_float(load_data_set(training_file))
         
         # test data set
         test_file = "data-test.csv"
-        test_set = convert_to_float(load_data_set(test_file), 'training')
+        test_set = convert_to_float(load_data_set(test_file))
 
         # Files Check
         if not training_set:
