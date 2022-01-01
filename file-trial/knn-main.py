@@ -101,7 +101,7 @@ def main():
         training_set = convert_to_float(load_data_set(training_file), 'training')
 
         # Image Target
-        filename = './static/uploads/jeruk.jpeg'
+        filename = './static/jeruk.jpeg'
         myimg = cv2.imread(filename)
         avg_color_per_row = numpy.average(myimg, axis=0)
         avg_color = numpy.average(avg_color_per_row, axis=0)
