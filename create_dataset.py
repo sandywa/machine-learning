@@ -6,7 +6,8 @@ import numpy as np
 
 # ------------- Data Klasifikasi 1
 count = 1
-for filename in glob.glob('C:/Users/acer/Documents/MATLAB/dataset/original_data_set/Test/freshapples/*.png'): #assuming jpg
+# Membaca semua gambar pada folder dengan fungsi glob
+for filename in glob.glob('C:/Users/acer/Documents/MATLAB/dataset/original_data_set/Test/freshapples/*.png'): 
     myimg = cv2.imread(filename)
     avg_color_per_row = numpy.average(myimg, axis=0)
     avg_color = numpy.average(avg_color_per_row, axis=0)
@@ -26,7 +27,8 @@ print(arr)
 # ------------- Data Klasifikasi 2
 
 count = 1
-for filename in glob.glob('C:/Users/acer/Documents/MATLAB/dataset/original_data_set/Test/freshbanana/*.png'): #assuming jpg
+# Membaca semua gambar pada folder dengan fungsi glob
+for filename in glob.glob('C:/Users/acer/Documents/MATLAB/dataset/original_data_set/Test/freshbanana/*.png'): 
     myimg = cv2.imread(filename)
     avg_color_per_row = numpy.average(myimg, axis=0)
     avg_color = numpy.average(avg_color_per_row, axis=0)
@@ -46,7 +48,8 @@ print(arr2)
 # ------------- Data Klasifikasi 3
 
 count = 1
-for filename in glob.glob('C:/Users/acer/Documents/MATLAB/dataset/original_data_set/Test/freshoranges/*.png'): #assuming jpg
+# Membaca semua gambar pada folder dengan fungsi glob
+for filename in glob.glob('C:/Users/acer/Documents/MATLAB/dataset/original_data_set/Test/freshoranges/*.png'): 
     myimg = cv2.imread(filename)
     avg_color_per_row = numpy.average(myimg, axis=0)
     avg_color = numpy.average(avg_color_per_row, axis=0)
