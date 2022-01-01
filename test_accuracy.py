@@ -90,11 +90,11 @@ def knn(training_set, test_set, k):
 
             # save prediction into matrix 
             if count == 1 :
-                y_pred = np.array(prediksi)
+                matrixPrediksi = np.array(prediksi)
                 count = 2
             else :
                 row = np.array(prediksi)
-                y_pred = np.vstack([y_pred,row])
+                matrixPrediksi = np.vstack([matrixPrediksi,row])
 
             # empty the distance list
             distances.clear()
@@ -102,7 +102,7 @@ def knn(training_set, test_set, k):
     except Exception as e:
         print(e)
 
-    return y_pred
+    return matrixPrediksi
 
 def main():
     try:
@@ -128,10 +128,12 @@ def main():
             print('Expected number of neighbors is higher than number of training data instances')
 
         else:
-            y_pred = knn(training_set, test_set, k)
-            y_true = np.squeeze(np.asarray(test_set))
-            y_true = y_true[:,3]
-            score = accuracy_score(y_true, y_pred)
+            matrixPrediksi = knn(training_set, test_set, k)
+            
+            # convert to numpy array
+            matrixTarget = np.squeeze(np.asarray(test_set))
+            matrixTarget = matrixTarget[:,3]
+            score = accuracy_score(matrixTarget, matrixPrediksi)
             print('--------------------------------------')
             print('Accuracy KNN : ', score)
             print('--------------------------------------')
