@@ -7,19 +7,24 @@ import numpy as np
 # ------------- Data Klasifikasi 1
 count = 1
 # Membaca semua gambar pada folder dengan fungsi glob
-for filename in glob.glob('C:/Users/acer/Documents/MATLAB/dataset/original_data_set/Test/freshapples/*.png'): 
+for filename in glob.glob('C:/Users/acer/Documents/MATLAB/dataset/original_data_set/Test/freshapples/*.png'):
     myimg = cv2.imread(filename)
     avg_color_per_row = numpy.average(myimg, axis=0)
     avg_color = numpy.average(avg_color_per_row, axis=0)
     # color format is BGR not RGB, cv2 membaca gambar dalam format BGR.
     # save into 1 matrix
     if count == 1 :
+        # menyimpan hasil rata2 kedalam array
         arr = np.array(avg_color)
+        # memberikan label dengan menambahkan pada kolom pada array
         arr = np.hstack([avg_color,['Apple']])
         count = 2
     else :
+        # menyimpan hasil rata2 kedalam array
         row = np.array(avg_color)
+        # memberikan label dengan menambahkan pada kolom pada array
         row = np.hstack([row,['Apple']])
+        # menyisipkan hasil rata2 rgb baru kebaris selanjutnya
         arr = np.vstack([arr,row])
 print("Hasil Data 1 : ")
 print(arr)
