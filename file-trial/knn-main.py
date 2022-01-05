@@ -104,7 +104,9 @@ def main():
         filename = './static/jeruk.jpeg'
         myimg = cv2.imread(filename)
         avg_color_per_row = numpy.average(myimg, axis=0)
+        print("avg_color_per_row",avg_color_per_row)
         avg_color = numpy.average(avg_color_per_row, axis=0)
+        print("avg_color",avg_color)
         test_set = [avg_color]
 
         # Files Check

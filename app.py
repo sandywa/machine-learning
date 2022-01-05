@@ -1,7 +1,7 @@
 import os
 import cv2
 import numpy
-from flask import Flask, render_template, request, send_from_directory
+from flask import Flask, render_template, request
 from csv import reader
 from sys import exit
 from math import sqrt
@@ -25,10 +25,6 @@ def convert_to_float(data_set, mode):
         if mode == 'training':
             for data in data_set:
                 new_set.append([float(x) for x in data[:len(data)-1]] + [data[len(data)-1]])
-
-        elif mode == 'test':
-            for data in data_set:
-                new_set.append([float(x) for x in data])
 
         else:
             print('Invalid mode, program will exit.')
@@ -87,13 +83,6 @@ def knn(training_set, test_set, k):
 
             return classes[index]
 
-            # Display prediction
-            print('The predicted class for sample ' + str(test_instance) + ' is : ' + classes[index])
-            print('Number of votes : ' + str(value) + ' out of ' + str(k))
-
-            # empty the distance list
-            distances.clear()
-
     except Exception as e:
         print(e)
 
@@ -105,7 +94,7 @@ def index():
             img_path = os.path.join(app.config['UPLOAD_FOLDER'],image.filename)
             image.save(img_path)
             # get value of k
-            k = 5
+            k = 3
 
             # load the training and test data set
             training_file = "data-training.csv"

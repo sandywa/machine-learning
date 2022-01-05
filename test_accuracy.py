@@ -73,8 +73,8 @@ def knn(training_set, test_set, k):
             index, value = find_response(neighbors, classes)
 
             # Display prediction
-            print('The predicted class for sample ' + str(test_instance) + ' is : ' + classes[index])
-            print('Number of votes : ' + str(value) + ' out of ' + str(k))
+            #print('The predicted class for sample ' + str(test_instance) + ' is : ' + classes[index])
+            #print('Number of votes : ' + str(value) + ' out of ' + str(k))
 
             # hasil prediksi 
             prediksi = classes[index]
