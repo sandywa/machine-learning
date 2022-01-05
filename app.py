@@ -94,7 +94,7 @@ def index():
             img_path = os.path.join(app.config['UPLOAD_FOLDER'],image.filename)
             image.save(img_path)
             # get value of k
-            k = 3
+            k = 7
 
             # load the training and test data set
             training_file = "data-training.csv"

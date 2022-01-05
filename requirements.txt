@@ -1,5 +1,3 @@
 flask
 gunicorn
 opencv-contrib-python-headless
-joblib
-scikit-learn

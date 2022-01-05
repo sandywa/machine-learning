@@ -8,18 +8,18 @@ from sklearn.metrics import accuracy_score
 
 def load_data_set(filename):
     try:
-        with open(filename, newline='') as iris:
-            return list(reader(iris, delimiter=','))
+        with open(filename, newline='') as DataSet:
+            return list(reader(DataSet, delimiter=','))
+    
     except FileNotFoundError as e:
         raise e
-
-
+    
 def convert_to_float(data_set):
     new_set = []
     try:
         for data in data_set:
+            #set data dan set label hasil
             new_set.append([float(x) for x in data[:len(data)-1]] + [data[len(data)-1]])
-
         return new_set
 
     except ValueError as v:
